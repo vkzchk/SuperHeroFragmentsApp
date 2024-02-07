@@ -1,6 +1,7 @@
 package com.example.superherofragmentapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,23 +12,23 @@ import androidx.fragment.app.Fragment
 class ListFragment:Fragment() {
 
     private var onItemClick: (Details) -> Unit = {}
-    private lateinit var adapter: SuperheroesAdapter
+    private lateinit var myAdapter: SuperheroesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.list_item_layout, container, false)
+        return inflater.inflate(R.layout.list_fragment_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val list: ListView = view.findViewById(R.id.listContainer)
-        adapter = SuperheroesAdapter(requireContext(), mutableListOf())
-        list.adapter = adapter
+        val list: ListView = view.findViewById(R.id.listView)
+        myAdapter = SuperheroesAdapter(requireContext(), mutableListOf())
+        list.adapter = myAdapter
         list.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
-            val superhero = adapter.getItem(position)
+            val superhero = myAdapter.getItem(position)
             superhero?.let { onItemClick(it.details) }}
     }
 
@@ -36,8 +37,9 @@ class ListFragment:Fragment() {
     }
 
     fun updateList(superheroes: List<SuperHeroTransformResponse>) {
-        adapter.clear()
-        adapter.addAll(superheroes)
-        adapter.notifyDataSetChanged()
+        myAdapter.clear()
+        myAdapter.addAll(superheroes)
+        myAdapter.notifyDataSetChanged()
     }
+
 }

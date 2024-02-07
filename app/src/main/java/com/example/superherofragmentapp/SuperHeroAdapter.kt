@@ -22,21 +22,23 @@ class SuperheroesAdapter(
                 parent,
                 false
             )
-            val itemImage: ImageView = listItemView.findViewById(R.id.itemImage)
-            val itemTitle: TextView = listItemView.findViewById(R.id.itemTitle)
-            val itemWork: TextView = listItemView.findViewById(R.id.itemWork)
-            val superhero = getItem(position)
-
-            superhero?.let {
-                itemTitle.text = it.name
-                itemWork.text = it.work
-                Glide.with(context).load(it.imageUrl).into(itemImage)
-            }
         } else {
             listItemView = convertView
         }
 
+        val itemImage: ImageView = listItemView.findViewById(R.id.itemImage)
+        val itemTitle: TextView = listItemView.findViewById(R.id.itemTitle)
+        val itemWork: TextView = listItemView.findViewById(R.id.itemWork)
+        val superhero = getItem(position)
+
+        superhero?.let {
+            itemTitle.text = it.name
+            itemWork.text = it.work
+            Glide.with(context).load(it.imageUrl).into(itemImage)
+        }
+
         return listItemView
     }
+
 }
 
