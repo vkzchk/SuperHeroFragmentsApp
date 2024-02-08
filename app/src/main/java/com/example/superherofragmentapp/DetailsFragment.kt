@@ -17,6 +17,7 @@ class DetailsFragment:Fragment() {
     private lateinit var groupAffiliationTextView: TextView
     private lateinit var relativesTextView: TextView
     private lateinit var itemImageView: ImageView
+    private var detailsToView: Details? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,9 +34,13 @@ class DetailsFragment:Fragment() {
         groupAffiliationTextView = view.findViewById(R.id.groupAffiliation)
         relativesTextView = view.findViewById(R.id.relatives)
         itemImageView = view.findViewById(R.id.imageUrl)
+        detailsToView?.let { show(it) }
     }
 
-    fun updateDetails(details: Details) {
+    fun setDetails(details: Details) {
+        detailsToView = details
+    }
+    fun show(details: Details) {
         fullNameTextView.text = details.fullName
         genderTextView.text = details.gender
         alterEgosTextView.text = details.alterEgos

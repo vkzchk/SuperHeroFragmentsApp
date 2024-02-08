@@ -1,7 +1,6 @@
 package com.example.superherofragmentapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,7 @@ class ListFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val list: ListView = view.findViewById(R.id.listView)
-        myAdapter = SuperheroesAdapter(requireContext(), mutableListOf())
+        myAdapter = SuperheroesAdapter(requireContext(), mutableListOf(), onItemClick)
         list.adapter = myAdapter
         list.onItemClickListener = AdapterView.OnItemClickListener{ _, _, position, _ ->
             val superhero = myAdapter.getItem(position)

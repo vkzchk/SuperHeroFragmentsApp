@@ -11,7 +11,8 @@ import com.bumptech.glide.Glide
 
 class SuperheroesAdapter(
     context: Context,
-    items: MutableList<SuperHeroTransformResponse>
+    items: MutableList<SuperHeroTransformResponse>,
+    val onItemClick: (Details) -> Unit
 ): ArrayAdapter<SuperHeroTransformResponse>(context, 0, items) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -37,6 +38,11 @@ class SuperheroesAdapter(
             Glide.with(context).load(it.imageUrl).into(itemImage)
         }
 
+        listItemView.setOnClickListener{
+            if (superhero != null) {
+                onItemClick(superhero.details)
+            }
+        }
         return listItemView
     }
 

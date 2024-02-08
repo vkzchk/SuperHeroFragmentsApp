@@ -2,6 +2,8 @@ package com.example.superherofragmentapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import com.example.superherolist.ApiClient
@@ -29,10 +31,10 @@ class MainActivity : AppCompatActivity() {
 
        listFragment.setItemClickListener { details ->
             if (detailsFragment != null) {
-                detailsFragment.updateDetails(details)
+                detailsFragment.setDetails(details)
            } else {
                 val newDetailsFragment = DetailsFragment()
-                newDetailsFragment.updateDetails(details)
+                newDetailsFragment.setDetails(details)
                 supportFragmentManager.beginTransaction()
                     .add(R.id.listContainer, newDetailsFragment)
                     .addToBackStack("details_fragment")
