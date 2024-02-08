@@ -2,9 +2,6 @@ package com.example.superherofragmentapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import com.example.superherolist.ApiClient
 import com.example.superherolist.ApiInterface
